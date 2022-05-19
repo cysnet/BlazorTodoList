@@ -1,0 +1,56 @@
+@page "/TodoListViewPage"
+@page "/"
+
+@inject TodoItemService DataService;
+
+<TelerikListView Data="@Data" Pageable="true" PageSize="10" OnCreate="Add" OnDelete="Delete">
+    <HeaderTemplate>
+        <ListViewCommandButton Command="Add" Icon="add">Add</ListViewCommandButton>
+    </HeaderTemplate>
+    <Template>
+        <div style="border: 1px solid black; margin: 10px; padding: 10px; display: inline-block;">
+            名称：@context.Name <br>
+            是否完成：
+            <TelerikCheckBox Id="@context.Name" @bind-Value="@context.Done" /><br>
+            <ListViewCommandButton Command="Delete" Icon="remove">Delete</ListViewCommandButton>
+        </div>
+    </Template>
+    <EditTemplate>
+        <div style="border: 1px solid green; margin: 10px; padding: 10px; display: inline-block;">
+            <TelerikTextBox @bind-Value="@context.Name">
+            </TelerikTextBox><br />
+            <ListViewCommandButton Command="Save" Icon="save">Save</ListViewCommandButton>
+            <ListViewCommandButton Command="Cancel" Icon="cancel">Cancel</ListViewCommandButton>
+        </div>
+    </EditTemplate>
+</TelerikListView>
+
+@code {
+    public List<TodoItem> Data { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadData()
+    {
+        Data = await DataService.Read();
+    }
+
+    async Task Add(ListViewCommandEventArgs args)
+    {
+        await DataService.Create((TodoItem)args.Item);
+
+        await LoadData();
+    }
+
+    async Task Delete(ListViewCommandEventArgs args)
+    {
+        await DataService.Delete((TodoItem)args.Item);
+
+        await LoadData();
+    }
+}
