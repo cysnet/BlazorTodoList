@@ -1,0 +1,57 @@
+@page "/"
+
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Buttons
+@inject TodoItemService DataService;
+
+<SfTextBox @bind-Value="@Name"></SfTextBox>
+<button @onclick="@Add">Add Item</button>
+
+<SfListView DataSource="@Data">
+    <ListViewFieldSettings TValue="TodoItem" Id="Name" Text="Name"></ListViewFieldSettings>
+
+    <ListViewTemplates TValue="TodoItem">
+        <Template>
+            <div>
+                <span>@(context.Name)</span>
+                <SfCheckBox Label="完成" @bind-Checked="context.Done"></SfCheckBox>
+                <SfButton CssClass="e-round e-warning" @onclick="@(async () => { await Delete(context); })">-</SfButton>
+            </div>
+        </Template>
+    </ListViewTemplates>
+</SfListView>
+
+
+@code {
+
+    public string Name { get; set; } = "Hello, World!";
+
+    public List<TodoItem> Data { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadData()
+    {
+        Data = await DataService.Read();
+    }
+
+    async Task Add()
+    {
+        await DataService.Create(new TodoItem() { Name = Name });
+
+        await LoadData();
+    }
+
+    async Task Delete(TodoItem item)
+    {
+        await DataService.Delete(item);
+
+        await LoadData();
+    }
+}

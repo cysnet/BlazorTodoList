@@ -1,2 +1,3 @@
-TelerikTodoList/bin/*
-TelerikTodoList/obj/*
+*/bin/*
+*/obj/*
+*/.vscode/*
