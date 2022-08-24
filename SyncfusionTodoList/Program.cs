@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+//“¿¿µ≥ÈœÛ
 builder.Services.AddScoped<ITodoItemService,TodoItemService>();
 
 var app = builder.Build();

@@ -8,9 +8,8 @@ using TodoListComponentLib.Data;
 
 namespace TodoListComponentLib.Components
 {
-    public partial class TodoList
+    public partial class TodoList 
     {
-
         /// <summary>
         /// 绑定的数据源
         /// </summary>
