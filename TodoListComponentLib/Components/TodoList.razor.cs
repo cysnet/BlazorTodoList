@@ -10,10 +10,10 @@ namespace TodoListComponentLib.Components
 {
     public partial class TodoList
     {
-        public string Name { get; set; } = "Blazor";
-
-        [Inject]
-        public ITodoItemService DataService { get; set; }
+        /// <summary>
+        /// 绑定输入框
+        /// </summary>
+        private string Name { get; set; } = "Blazor";
 
         /// <summary>
         /// 绑定的数据源
