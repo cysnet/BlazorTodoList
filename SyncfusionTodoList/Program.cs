@@ -12,7 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<ITodoItemService,TodoItemService>();
 
 var app = builder.Build();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjQxNDU3QDMyMzAyZTMxMmUzMEh5T3lNZnB4Q25vWThtRGpvWkloSkJVVm1pVUVZMzgrVEtzNGsxVjJZdG89");
+//Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjQxNDU3QDMyMzAyZTMxMmUzMEh5T3lNZnB4Q25vWThtRGpvWkloSkJVVm1pVUVZMzgrVEtzNGsxVjJZdG89");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
