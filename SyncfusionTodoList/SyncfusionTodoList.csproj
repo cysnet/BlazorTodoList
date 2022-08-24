@@ -9,5 +9,9 @@
   <ItemGroup>
        <PackageReference Include="Syncfusion.Blazor" Version="20.1.0.55" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\TodoListComponentLib\TodoListComponentLib.csproj" />
+  </ItemGroup>
 
 </Project>

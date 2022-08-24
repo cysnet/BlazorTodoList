@@ -1,0 +1,15 @@
+﻿.e-list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.closebtn {
+    margin: 0 -8px 0 auto;
+    outline: none;
+    border: none;
+    padding: 0 8px;
+}

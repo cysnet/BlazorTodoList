@@ -1,6 +1,8 @@
-public class TodoItemService
+using TodoListComponentLib.Data;
+
+public class TodoItemService : ITodoItemService
 {
-    private List<TodoItem> data { get; set; } = new List<TodoItem> { new TodoItem { Name = "123" } };
+    private List<TodoItem> data { get; set; } = new List<TodoItem> { new TodoItem { Name = "Blazor" } };
     public async Task<List<TodoItem>> Read()
     {
         return await Task.FromResult(data);

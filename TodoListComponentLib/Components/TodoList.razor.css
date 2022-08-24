@@ -1,0 +1,33 @@
+﻿.container {
+    padding: 30px 40px 20px;
+    text-align: center;
+    width: 440px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background: #f2f2f2;
+}
+
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.form-input {
+    display: inline-block;
+    flex-grow: .65;
+    margin-right: 15px;
+}
+
+.undone-items {
+    background-color: #fe7345;
+    color: white
+}
+
+.done-items {
+    background-color: blue;
+    color: white
+}

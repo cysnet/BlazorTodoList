@@ -1,9 +1,13 @@
 @page "/"
 
+
+<TodoList></TodoList>
+
+@*
 @using Syncfusion.Blazor.Lists
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Buttons
-@inject TodoItemService DataService;
+@inject ITodoItemService DataService;
 
 <div class="container">
     <div class="form-wrapper">
@@ -130,4 +134,4 @@
         background-color: blue;
         color: white
     }
-</style>
+</style>*@
