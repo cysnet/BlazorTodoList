@@ -14,6 +14,7 @@ namespace SyncfusionTodoList.Pages
         {
             todoItems = await ItemService.Read();
         }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
