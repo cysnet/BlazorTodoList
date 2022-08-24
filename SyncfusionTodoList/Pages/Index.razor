@@ -5,27 +5,42 @@
 @using Syncfusion.Blazor.Buttons
 @inject TodoItemService DataService;
 
-<SfTextBox @bind-Value="@Name"></SfTextBox>
-<button @onclick="@Add">Add Item</button>
+<div class="container">
+    <div class="form-wrapper">
+        <div class="form-input">
+            <SfTextBox @bind-Value="@Name"></SfTextBox>
+        </div>
+        <SfButton CssClass="e-primary" @onclick="Add">添加</SfButton>
+    </div>
 
-<SfListView DataSource="@Data">
-    <ListViewFieldSettings TValue="TodoItem" Id="Name" Text="Name"></ListViewFieldSettings>
+    <SfListView DataSource="@Data">
+        <ListViewFieldSettings TValue="TodoItem" Id="Name" Text="Name" GroupBy="Done"></ListViewFieldSettings>
 
-    <ListViewTemplates TValue="TodoItem">
-        <Template>
-            <div>
-                <span>@(context.Name)</span>
-                <SfCheckBox Label="完成" @bind-Checked="context.Done"></SfCheckBox>
-                <SfButton CssClass="e-round e-warning" @onclick="@(async () => { await Delete(context); })">-</SfButton>
-            </div>
-        </Template>
-    </ListViewTemplates>
-</SfListView>
+        <ListViewTemplates TValue="TodoItem">
+            <Template>
+                <SfCheckBox @bind-Checked="context.Done"></SfCheckBox>
+                <p class="content">@(context.Name)</p>
+                <SfButton CssClass="closebtn" @onclick="@(async () => { await Delete(context); })">x</SfButton>
+            </Template>
+            <GroupTemplate>
+                @if (context.Text == "False")
+                {
+                    <div class="undone-items">未完成</div>
+                }
+                else
+                {
+                    <div class="done-items">已完成</div>
+                }
+            </GroupTemplate>
+        </ListViewTemplates>
+    </SfListView>
+</div>
+
 
 
 @code {
 
-    public string Name { get; set; } = "Hello, World!";
+    public string Name { get; set; } = "";
 
     public List<TodoItem> Data { get; set; }
 
@@ -55,3 +70,64 @@
         await LoadData();
     }
 }
+
+
+<style>
+
+    .container {
+        padding: 30px 40px 20px;
+        text-align: center;
+        width: 440px;
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        background: #f2f2f2;
+    }
+
+
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-input {
+        display: inline-block;
+        flex-grow: .65;
+        margin-right: 15px;
+    }
+
+    .e-list-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 10px 8px 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    .closebtn {
+        margin: 0 -8px 0 auto;
+        outline: none;
+        border: none;
+        padding: 0 8px;
+    }
+
+    .content {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-right: 7px;
+    }
+
+    .undone-items {
+        background-color: #fe7345;
+        color: white
+    }
+
+    .done-items {
+        background-color: blue;
+        color: white
+    }
+</style>
