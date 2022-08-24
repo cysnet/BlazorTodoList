@@ -23,11 +23,13 @@
 }
 
 .undone-items {
+    border-radius:3px;
     background-color: #fe7345;
     color: white
 }
 
 .done-items {
+    border-radius: 3px;
     background-color: blue;
     color: white
 }
