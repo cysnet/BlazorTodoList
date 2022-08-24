@@ -10,10 +10,6 @@ namespace TodoListComponentLib.Components
 {
     public partial class TodoList
     {
-        /// <summary>
-        /// 绑定输入框
-        /// </summary>
-        private string Name { get; set; } = "Blazor";
 
         /// <summary>
         /// 绑定的数据源
@@ -33,6 +29,16 @@ namespace TodoListComponentLib.Components
         [Parameter]
         public EventCallback<TodoItem> Delete { get; set; }
 
+
+        /// <summary>
+        /// 绑定输入框
+        /// </summary>
+        private string Name { get; set; } = "Blazor";
+
+        /// <summary>
+        /// 未完成数量
+        /// </summary>
+        private int UnDoneCount => Data.Where(e => !e.Done).Count();
 
         private async Task AddItem()
         {

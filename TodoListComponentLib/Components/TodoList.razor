@@ -27,4 +27,11 @@
             </GroupTemplate>
         </ListViewTemplates>
     </SfListView>
+
+    <footer>
+        @if (UnDoneCount>0)
+        {
+            <div class="undonetext">剩余@(UnDoneCount)个未完成</div>
+        }
+    </footer>
 </div>
