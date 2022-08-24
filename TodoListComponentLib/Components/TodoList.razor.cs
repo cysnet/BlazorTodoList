@@ -10,36 +10,19 @@ namespace TodoListComponentLib.Components
 {
     public partial class TodoList
     {
+        public string Name { get; set; } = "Blazor";
+
         [Inject]
         public ITodoItemService DataService { get; set; }
-        public string Name { get; set; } = "";
 
+        [Parameter]
         public List<TodoItem> Data { get; set; }
 
-        private async Task LoadData()
-        {
-            Data = await DataService.Read();
-        }
+        [Parameter]
+        public EventCallback<string> Add { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadData();
+        [Parameter]
+        public EventCallback<TodoItem> Delete { get; set; }
 
-            await base.OnInitializedAsync();
-        }
-
-        async Task Add()
-        {
-            await DataService.Create(new TodoItem() { Name = Name });
-
-            await LoadData();
-        }
-
-        async Task Delete(TodoItem item)
-        {
-            await DataService.Delete(item);
-
-            await LoadData();
-        }
     }
 }

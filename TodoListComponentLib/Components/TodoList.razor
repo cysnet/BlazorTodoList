@@ -8,7 +8,7 @@
         <div class="form-input">
             <SfTextBox @bind-Value="@Name"></SfTextBox>
         </div>
-        <SfButton CssClass="e-primary" @onclick="Add">添加</SfButton>
+        <SfButton CssClass="e-primary" @onclick="(()=>{Add.InvokeAsync(Name);})">添加</SfButton>
     </div>
 
     <SfListView DataSource="@Data">
@@ -18,7 +18,7 @@
             <Template>
                 <SfCheckBox @bind-Checked="context.Done"></SfCheckBox>
                 <p class="content">@(context.Name)</p>
-                <SfButton CssClass="closebtn" @onclick="@(async () => { await Delete(context); })">x</SfButton>
+                <SfButton CssClass="closebtn" @onclick="@(async () => { await Delete.InvokeAsync(context); })">x</SfButton>
             </Template>
             <GroupTemplate>
                 @if (context.Text == "False")
