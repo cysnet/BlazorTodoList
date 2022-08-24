@@ -15,14 +15,36 @@ namespace TodoListComponentLib.Components
         [Inject]
         public ITodoItemService DataService { get; set; }
 
+        /// <summary>
+        /// 绑定的数据源
+        /// </summary>
         [Parameter]
         public List<TodoItem> Data { get; set; }
 
+        /// <summary>
+        /// 添加Item操作
+        /// </summary>
         [Parameter]
         public EventCallback<string> Add { get; set; }
 
+        /// <summary>
+        /// 删除操作
+        /// </summary>
         [Parameter]
         public EventCallback<TodoItem> Delete { get; set; }
 
+
+        private async Task AddItem()
+        {
+            if (!string.IsNullOrEmpty(Name))
+            {
+                await Add.InvokeAsync(Name);
+            }
+        }
+
+        private async Task DeleteItem(TodoItem item)
+        {
+            await Delete.InvokeAsync(item);
+        }
     }
 }
